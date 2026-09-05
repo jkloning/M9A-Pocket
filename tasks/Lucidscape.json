@@ -1,0 +1,151 @@
+{
+    "task": [
+        {
+            "name": "自动醒梦",
+            "label": "$Task.Lucidscape",
+            "entry": "Lucidscape",
+            "option": [
+                "醒梦上半编队",
+                "醒梦下半编队"
+            ],
+            "group": [
+                "daily"
+            ],
+            "description": "$Task.Lucidscape.desc"
+        }
+    ],
+    "option": {
+        "醒梦上半编队": {
+            "type": "select",
+            "label": "$Option.Lucidscape.FirstHalfFormation",
+            "cases": [
+                {
+                    "name": "一",
+                    "label": "$Common.Formation.1",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_1": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "二",
+                    "label": "$Common.Formation.2",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_1": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "三",
+                    "label": "$Common.Formation.3",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_1": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "四",
+                    "label": "$Common.Formation.4",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_1": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "醒梦下半编队": {
+            "type": "select",
+            "label": "$Option.Lucidscape.SecondHalfFormation",
+            "cases": [
+                {
+                    "name": "二",
+                    "label": "$Common.Formation.2",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_2": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "三",
+                    "label": "$Common.Formation.3",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_2": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "四",
+                    "label": "$Common.Formation.4",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_2": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "一",
+                    "label": "$Common.Formation.1",
+                    "pipeline_override": {
+                        "LucidscapeTeamSelect_2": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

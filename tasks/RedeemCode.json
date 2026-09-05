@@ -1,0 +1,38 @@
+{
+    "task": [
+        {
+            "name": "使用兑换码",
+            "label": "$Task.RedeemCode",
+            "entry": "redeem_code",
+            "option": [
+                "自定义兑换码"
+            ],
+            "group": [
+                "daily"
+            ],
+            "description": "$Task.RedeemCode.desc"
+        }
+    ],
+    "option": {
+        "自定义兑换码": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "兑换码",
+                    "label": "$Option.RedeemCode.CustomCodes.Code",
+                    "default": "占位",
+                    "pattern_msg": "$Option.RedeemCode.CustomCodes.Code.msg",
+                    "pipeline_type": "string"
+                }
+            ],
+            "pipeline_override": {
+                "redeem_codeStart": {
+                    "attach": {
+                        "codes": "{兑换码}"
+                    }
+                }
+            },
+            "label": "$Option.RedeemCode.CustomCodes"
+        }
+    }
+}

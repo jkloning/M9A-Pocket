@@ -1,0 +1,219 @@
+{
+    "task": [
+        {
+            "name": "局外演绎：黄昏的音序",
+            "label": "$Task.SeriesOfDusks",
+            "entry": "SeriesOfDusks",
+            "option": [
+                "触媒选择",
+                "速刷模式",
+                "演绎难度"
+            ],
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.SeriesOfDusks.desc"
+        }
+    ],
+    "option": {
+        "触媒选择": {
+            "type": "select",
+            "label": "$Option.SeriesOfDusks.Catalyst",
+            "cases": [
+                {
+                    "name": "术式神灯",
+                    "label": "$Option.SeriesOfDusks.Catalyst.MagicLamp",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "石榴心血",
+                    "label": "$Option.SeriesOfDusks.Catalyst.PomegranateHeartblood",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_PomegranateHeartBleeding.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "精神视界",
+                    "label": "$Option.SeriesOfDusks.Catalyst.MentalHorizon",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_SpiritualVision.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "仪式匕首",
+                    "label": "$Option.SeriesOfDusks.Catalyst.RitualDagger",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_RitualDagger.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "曳变灵摆",
+                    "label": "$Option.SeriesOfDusks.Catalyst.DriftingPendulum",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_DragChangePendulum.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "“一”的诫令",
+                    "label": "$Option.SeriesOfDusks.Catalyst.CommandmentOfOne",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_Commandment.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "“全”的振歌",
+                    "label": "$Option.SeriesOfDusks.Catalyst.AnthemOfAll",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_Song.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "点金之石",
+                    "label": "$Option.SeriesOfDusks.Catalyst.PhilosophersStone",
+                    "pipeline_override": {
+                        "SODStart_MediaSelect": {
+                            "recognition": {
+                                "param": {
+                                    "template": "OutsideDeduction/SODStart_Media_MidasStone.png"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "速刷模式": {
+            "type": "switch",
+            "label": "$Option.SeriesOfDusks.FastMode",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "SOD_UNOPENED": {
+                            "next": [
+                                "ODR_Start",
+                                "[JumpBack]SODStop"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "演绎难度": {
+            "type": "select",
+            "label": "$Option.SeriesOfDusks.Difficulty",
+            "cases": [
+                {
+                    "name": "Current",
+                    "pipeline_override": {
+                        "SOD_DifficultySelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": "cur"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "MAX",
+                    "pipeline_override": {
+                        "SOD_DifficultySelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": "max"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "11",
+                    "pipeline_override": {
+                        "SOD_DifficultySelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": "11"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "10",
+                    "pipeline_override": {
+                        "SOD_DifficultySelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": "10"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "5",
+                    "pipeline_override": {
+                        "SOD_DifficultySelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": "5"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

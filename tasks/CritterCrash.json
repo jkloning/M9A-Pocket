@@ -1,0 +1,13 @@
+{
+    "task": [
+        {
+            "name": "翻斗棋速刷",
+            "label": "$Task.CritterCrash",
+            "entry": "CritterCrash",
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.CritterCrash.desc"
+        }
+    ]
+}

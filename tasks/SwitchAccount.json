@@ -1,0 +1,46 @@
+{
+    "task": [
+        {
+            "name": "切换账号",
+            "label": "$Task.SwitchAccount",
+            "entry": "SwitchAccount",
+            "option": [
+                "目标账号(可选)"
+            ],
+            "resource": [
+                "官服"
+            ],
+            "group": [
+                "daily"
+            ],
+            "description": "$Task.SwitchAccount.desc"
+        }
+    ],
+    "option": {
+        "目标账号(可选)": {
+            "type": "input",
+            "label": "$Option.SwitchAccount.TargetAccount",
+            "inputs": [
+                {
+                    "name": "账号",
+                    "label": "$Option.SwitchAccount.TargetAccount.Account",
+                    "pipeline_type": "string",
+                    "default": "",
+                    "verify": ".*",
+                    "description": "$Option.SwitchAccount.TargetAccount.Account.desc"
+                }
+            ],
+            "pipeline_override": {
+                "SwitchAccountSelect": {
+                    "action": {
+                        "param": {
+                            "custom_action_param": {
+                                "account": "{账号}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

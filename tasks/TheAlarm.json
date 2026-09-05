@@ -1,0 +1,256 @@
+{
+    "task": [
+        {
+            "name": "警铃鸣响时（需高练度）",
+            "label": "$Task.TheAlarm",
+            "entry": "TheAlarm",
+            "option": [
+                "扫荡难度"
+            ],
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.TheAlarm.desc"
+        }
+    ],
+    "option": {
+        "扫荡难度": {
+            "type": "select",
+            "label": "$Option.TheAlarm.SweepDifficulty",
+            "cases": [
+                {
+                    "name": "日常出勤",
+                    "label": "$Option.TheAlarm.SweepDifficulty.DailyDuty",
+                    "pipeline_override": {
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Easy",
+                                        "mode": "Normal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "日常出勤（速刷）",
+                    "label": "$Option.TheAlarm.SweepDifficulty.DailyDutyFast",
+                    "pipeline_override": {
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Easy",
+                                        "mode": "Quickly"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "雨迹追查",
+                    "label": "$Option.TheAlarm.SweepDifficulty.RainMarkTracking",
+                    "pipeline_override": {
+                        "Alarm_End": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        893,
+                                        517,
+                                        74,
+                                        34
+                                    ],
+                                    "expected": "^(?:[0-9]|1[01])/12$"
+                                }
+                            }
+                        },
+                        "Alarm_Find0/3": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        893,
+                                        517,
+                                        74,
+                                        34
+                                    ],
+                                    "expected": "^(?:[0-9]|1[01])/12$"
+                                }
+                            }
+                        },
+                        "Alarm_Select": {
+                            "enabled": true,
+                            "recognition": {
+                                "param": {
+                                    "expected": "雨迹追查"
+                                }
+                            }
+                        },
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Normal",
+                                        "mode": "Normal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "雨迹追查(速刷）",
+                    "label": "$Option.TheAlarm.SweepDifficulty.RainMarkTrackingFast",
+                    "pipeline_override": {
+                        "Alarm_End": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        893,
+                                        517,
+                                        74,
+                                        34
+                                    ],
+                                    "expected": "^(?:[0-9]|1[01])/12$"
+                                }
+                            }
+                        },
+                        "Alarm_Find0/3": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        893,
+                                        517,
+                                        74,
+                                        34
+                                    ],
+                                    "expected": "^(?:[0-9]|1[01])/12$"
+                                }
+                            }
+                        },
+                        "Alarm_Select": {
+                            "enabled": true,
+                            "recognition": {
+                                "param": {
+                                    "expected": "雨迹追查"
+                                }
+                            }
+                        },
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Normal",
+                                        "mode": "Quickly"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "雨痕处治",
+                    "label": "$Option.TheAlarm.SweepDifficulty.RainMarkDisposal",
+                    "pipeline_override": {
+                        "Alarm_End": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        895,
+                                        601,
+                                        69,
+                                        30
+                                    ],
+                                    "expected": "^[0-9]/10$"
+                                }
+                            }
+                        },
+                        "Alarm_Find0/3": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        895,
+                                        601,
+                                        69,
+                                        30
+                                    ],
+                                    "expected": "^[0-9]/10$"
+                                }
+                            }
+                        },
+                        "Alarm_Select": {
+                            "enabled": true,
+                            "recognition": {
+                                "param": {
+                                    "expected": "雨痕处治"
+                                }
+                            }
+                        },
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Hard",
+                                        "mode": "Normal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "雨痕处治(速刷）",
+                    "label": "$Option.TheAlarm.SweepDifficulty.RainMarkDisposalFast",
+                    "pipeline_override": {
+                        "Alarm_End": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        895,
+                                        601,
+                                        69,
+                                        30
+                                    ],
+                                    "expected": "^[0-9]/10$"
+                                }
+                            }
+                        },
+                        "Alarm_Find0/3": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        895,
+                                        601,
+                                        69,
+                                        30
+                                    ],
+                                    "expected": "^[0-9]/10$"
+                                }
+                            }
+                        },
+                        "Alarm_Select": {
+                            "enabled": true,
+                            "recognition": {
+                                "param": {
+                                    "expected": "雨痕处治"
+                                }
+                            }
+                        },
+                        "Alarm_FindStage": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "difficulty": "Hard",
+                                        "mode": "Quickly"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

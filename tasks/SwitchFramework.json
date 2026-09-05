@@ -1,0 +1,131 @@
+{
+    "task": [
+        {
+            "name": "切换艺术框架",
+            "label": "$Task.SwitchFramework",
+            "entry": "switch_menu",
+            "option": [
+                "艺术框架"
+            ],
+            "pipeline_override": {
+                "RecordId": {
+                    "next": []
+                },
+                "HomeFlagCloseReturnMain": {
+                    "next": []
+                }
+            },
+            "group": [
+                "daily"
+            ]
+        }
+    ],
+    "option": {
+        "艺术框架": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "手提箱制式（初始）",
+                    "label": "$Option.SwitchFramework.ArtFramework.Suitcase",
+                    "pipeline_override": {
+                        "frame_art_open": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame1open.png"
+                                }
+                            }
+                        },
+                        "frame_art_select": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame1close.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "伊卡洛斯所见",
+                    "label": "$Option.SwitchFramework.ArtFramework.Icarus",
+                    "pipeline_override": {
+                        "frame_art_open": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame2open.png"
+                                }
+                            }
+                        },
+                        "frame_art_select": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame2close.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "渐弱之心弦",
+                    "label": "$Option.SwitchFramework.ArtFramework.Diminuendo",
+                    "pipeline_override": {
+                        "frame_art_open": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame3open.png"
+                                }
+                            }
+                        },
+                        "frame_art_select": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame3close.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "裁纸饰朱梅",
+                    "label": "$Option.SwitchFramework.ArtFramework.PaperCutPlum",
+                    "pipeline_override": {
+                        "frame_art_open": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame4open.png"
+                                }
+                            }
+                        },
+                        "frame_art_select": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame4close.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "鸮式特快",
+                    "label": "$Option.SwitchFramework.ArtFramework.OwlExpress",
+                    "pipeline_override": {
+                        "frame_art_open": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame5open.png"
+                                }
+                            }
+                        },
+                        "frame_art_select": {
+                            "recognition": {
+                                "param": {
+                                    "template": "SwitchMenu/frame/frame5close.png"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "label": "$Option.SwitchFramework.ArtFramework"
+        }
+    }
+}

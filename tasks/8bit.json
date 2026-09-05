@@ -1,0 +1,138 @@
+{
+    "task": [
+        {
+            "name": "8-bit 街机秀",
+            "label": "$Task.EightBitArcade",
+            "entry": "8bit",
+            "option": [
+                "8-bit关卡难度",
+                "8-bit刷取模式",
+                "8-bit移动方式"
+            ],
+            "group": [
+                "standalone"
+            ],
+            "desc": "$Task.EightBitArcade.desc"
+        }
+    ],
+    "option": {
+        "8-bit关卡难度": {
+            "type": "select",
+            "label": "$Option.EightBitArcade.StageDifficulty",
+            "cases": [
+                {
+                    "name": "单向投币Ⅰ",
+                    "label": "$Option.EightBitArcade.StageDifficulty.1",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "单向投币Ⅱ",
+                    "label": "$Option.EightBitArcade.StageDifficulty.2",
+                    "pipeline_override": {
+                        "8bitLevelSelect": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        459,
+                                        169,
+                                        94,
+                                        26
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "单向投币Ⅲ",
+                    "label": "$Option.EightBitArcade.StageDifficulty.3",
+                    "pipeline_override": {
+                        "8bitLevelSelect": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [
+                                        281,
+                                        168,
+                                        94,
+                                        26
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "8-bit刷取模式": {
+            "type": "select",
+            "label": "$Option.EightBitArcade.FarmingMode",
+            "cases": [
+                {
+                    "name": "通关第一层后直接退出(稳定)",
+                    "label": "$Option.EightBitArcade.FarmingMode.ExitAfterFirstFloor",
+                    "pipeline_override": {
+                        "8bitFlagInCombat": {
+                            "action": {
+                                "type": "Custom",
+                                "param": {
+                                    "custom_action": "EightBitCombatInit",
+                                    "custom_action_param": {
+                                        "mode": "stable"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "尽力打",
+                    "label": "$Option.EightBitArcade.FarmingMode.PushOn",
+                    "pipeline_override": {
+                        "8bitCombatEnd": {
+                            "next": [
+                                "8bitFlagInCombat"
+                            ]
+                        },
+                        "8bitFlagInCombat": {
+                            "next": [
+                                "8bitCombatEnd",
+                                "8bitFlagInMain",
+                                "[JumpBack]8bitHome",
+                                "[JumpBack]Confirm",
+                                "[JumpBack]8bitScoreRecord",
+                                "[JumpBack]8bitCombatMove"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "8-bit移动方式": {
+            "type": "select",
+            "label": "$Option.EightBitArcade.MovementInput",
+            "description": "$Option.EightBitArcade.MovementInput.desc",
+            "cases": [
+                {
+                    "name": "键盘输入",
+                    "label": "$Option.EightBitArcade.MovementInput.Keyboard",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "点击输入",
+                    "label": "$Option.EightBitArcade.MovementInput.Tap",
+                    "pipeline_override": {
+                        "8bitCombatMove": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "move_input": "click"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
