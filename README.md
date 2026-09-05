@@ -8,6 +8,17 @@
 
 Agent 运行时（arm64-v8a Python bundle）不进本仓库，由打包配方从仓库外引用。
 
+## 维护约定
+
+本仓库与本地 `E:/ai/MAA/M9A-android` 一一对应：**每次修改本目录内容后，需 `git commit` 并 `push` 到 `origin/main`**，保证 GitHub 上的 M9A-Pocket 始终与最新打包资源一致。
+
+相对上游发布包的安全加固（2026-09-06）：
+
+- `agent/utils/version_checker.py`：MirrorChyan API 主机写死、rid 编码、查询参数走 `params=`（防 SSRF）
+- `agent/custom/reco/general.py`：逻辑表达式改用 AST 白名单求值器，替换 `eval`（防代码注入）
+- `agent/utils/account_store.py`：`save_json_object` 增加 realpath 项目目录容器校验（防路径穿越）
+- `agent/custom/action/eight_bit.py`：随机数改用 `secrets`
+
 ## 打包
 
 ```bash
