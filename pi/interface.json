@@ -4,11 +4,10 @@
     "zh_cn": "i18n/zh_cn.json",
     "en_us": "i18n/en_us.json"
   },
-  "contact": "CONTACT",
   "license": "LICENSE",
   "name": "m9a",
   "label": "M9A",
-  "version": "v4.8.0",
+  "version": "v4.8.1",
   "icon": "logo.ico",
   "github": "https://github.com/jkloning/M9A-Pocket",
   "mirrorchyan_rid": "M9A",
