@@ -1,0 +1,42 @@
+{
+    "task": [
+        {
+            "name": "雨前漫游指南",
+            "label": "$Task.PreStormProtocol",
+            "entry": "PreStormProtocolStart",
+            "option": [
+                "雨前漫游刷取模式"
+            ],
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.PreStormProtocol.desc"
+        }
+    ],
+    "option": {
+        "雨前漫游刷取模式": {
+            "type": "select",
+            "label": "$Option.PreStormProtocol.FarmingMode",
+            "cases": [
+                {
+                    "name": "未击败教程中boss",
+                    "label": "$Option.PreStormProtocol.FarmingMode.BossNotBeaten",
+                    "pipeline_override": {
+                        "PreStormProtocol1": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "已击败教程中boss",
+                    "label": "$Option.PreStormProtocol.FarmingMode.BossBeaten",
+                    "pipeline_override": {
+                        "PreStormProtocol": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

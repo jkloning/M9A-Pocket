@@ -1,0 +1,270 @@
+{
+    "task": [
+        {
+            "name": "局外演绎：无声综合征",
+            "label": "$Task.TheSyndromeOfSilence",
+            "entry": "TheSyndromeOfSilence",
+            "option": [
+                "携带好旅伴",
+                "难度选择",
+                "配器选择",
+                "作战策略"
+            ],
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.TheSyndromeOfSilence.desc"
+        }
+    ],
+    "option": {
+        "携带好旅伴": {
+            "type": "switch",
+            "label": "$Option.TheSyndromeOfSilence.GoodCompanion",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "SOSMainMenu": {
+                            "next": [
+                                "SOSWordlessWorkshop",
+                                "[JumpBack]SOSConfirm",
+                                "[JumpBack]SOSStart"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "难度选择": {
+            "type": "select",
+            "label": "$Option.TheSyndromeOfSilence.Difficulty",
+            "cases": [
+                {
+                    "name": "当前",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Current",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "颤动 Ⅰ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Tremor1",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "颤动 Ⅱ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Tremor2",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "嗡鸣 Ⅰ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Hum1",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "嗡鸣 Ⅱ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Hum2",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "尖啸 Ⅰ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Fortissimo1",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "尖啸 Ⅱ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Fortissimo2",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 6
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "崩解 Ⅰ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Disintegration1",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 7
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "崩解 Ⅱ",
+                    "label": "$Option.TheSyndromeOfSilence.Difficulty.Disintegration2",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 8
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "配器选择": {
+            "type": "select",
+            "label": "$Option.TheSyndromeOfSilence.Instrument",
+            "cases": [
+                {
+                    "name": "管钟",
+                    "label": "$Option.TheSyndromeOfSilence.Instrument.TubularBells",
+                    "pipeline_override": {
+                        "SOSSelectInstrument": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "instrument": "管钟"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "拨弦",
+                    "label": "$Option.TheSyndromeOfSilence.Instrument.Pizzicato",
+                    "pipeline_override": {
+                        "SOSSelectInstrument": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "instrument": "拨弦"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "乐鞭",
+                    "label": "$Option.TheSyndromeOfSilence.Instrument.Whip",
+                    "pipeline_override": {
+                        "SOSSelectInstrument": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "instrument": "乐鞭"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "作战策略": {
+            "type": "select",
+            "label": "$Option.TheSyndromeOfSilence.BattleStrategy",
+            "cases": [
+                {
+                    "name": "尽量打",
+                    "label": "$Option.TheSyndromeOfSilence.BattleStrategy.PushOn",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "遇到恶战重开",
+                    "label": "$Option.TheSyndromeOfSilence.BattleStrategy.RestartOnHardBattle",
+                    "pipeline_override": {
+                        "SOSSelectNode": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "restart_on_ezhan": true
+                                    }
+                                }
+                            }
+                        },
+                        "SOSNodeProcess": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "restart_on_ezhan": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

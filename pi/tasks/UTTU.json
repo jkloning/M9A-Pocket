@@ -1,0 +1,13 @@
+{
+    "task": [
+        {
+            "name": "UTTU闪烁集会",
+            "label": "$Task.UTTU",
+            "entry": "UTTU",
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.UTTU.desc"
+        }
+    ]
+}

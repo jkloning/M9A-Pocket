@@ -1,0 +1,15 @@
+# 打包产物与本地调试
+debug/
+*.log
+*.apk
+
+# Python 运行期产物
+__pycache__/
+*.pyc
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# Mimosa 本地扫描状态（勿推送）
+.mimosa/

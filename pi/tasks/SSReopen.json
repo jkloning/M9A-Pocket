@@ -1,0 +1,34 @@
+{
+    "task": [
+        {
+            "name": "复刻活动推图",
+            "label": "$Task.SSReopen",
+            "entry": "SSReopen",
+            "option": [
+                "吃糖"
+            ],
+            "pipeline_override": {
+                "WaitReplay": {
+                    "recognition": {
+                        "param": {
+                            "roi": [
+                                1048,
+                                630,
+                                124,
+                                41
+                            ],
+                            "expected": [
+                                "复现",
+                                "开始行动"
+                            ]
+                        }
+                    }
+                }
+            },
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.SSReopen.desc"
+        }
+    ]
+}

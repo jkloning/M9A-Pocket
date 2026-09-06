@@ -1,0 +1,11 @@
+{
+  "root_updated": 1787887770000,
+  "manifests": {
+    "manifest.json": 1787887770000,
+    "data/manifest.json": 1787887770000,
+    "data/activity/manifest.json": 1786866467000,
+    "data/combat/manifest.json": 1783504290000,
+    "data/redeem_code/manifest.json": 1783744309000,
+    "data/sos/manifest.json": 1787887770000
+  }
+}

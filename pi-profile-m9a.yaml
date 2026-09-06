@@ -1,0 +1,50 @@
+# M9A Pocket 打包配方（MaaFwApp 内核）
+# 自包含：所有路径相对本文件，仓内 pi/（PI 资源）与 m9a-agent-dist/（agent 运行时）即全部输入
+# 字段语义见 build-logic 的 BuildProfile.kt；字符串支持 ${VAR} / ${VAR:-回落}
+
+# 含 interface.json 的那一层，git -C M9A-android archive 的产物，随仓库维护
+assets: pi
+
+include:
+  - interface.json
+  - tasks/**
+  - resource/**
+  - data/**
+  - i18n/**
+  - agent/**
+  - CONTACT
+  - LICENSE
+
+# 压在 include 之上，挖掉运行期用不上的内容
+exclude:
+  - resource/base/announcement/**
+  - agent/__pycache__/**
+  - agent/**/__pycache__/**
+
+agent:
+  # 布局：<abi>/bundle/**（解包目录树），由 scripts/build_agent_bundle.py 产出
+  # 重产：python scripts/build_agent_bundle.py --requirements pi/agent/requirements.txt
+  sourceDir: m9a-agent-dist
+  abi: [arm64-v8a]
+
+  # 与 PI 的 agent[] 一一对应：M9A 只声明一个 agent
+  # env 按 INTEGRATION.md 权威写法；漏 PYTHONPATH/MAAFW_BINARY_PATH 会导致
+  # 设备上 ModuleNotFoundError: No module named 'maa'
+  runtimes:
+    - location: bundle
+      executable: bin/python3
+      args: [-u, agent/main.py]
+      env:
+        PYTHONHOME: "{bundle}/prefix"
+        PYTHONPATH: "{bundle}/site-packages/pure.zip:{bundle}/site-packages"
+        LD_LIBRARY_PATH: "{bundle}/prefix/lib:{nativeLibs}"
+        MAAFW_BINARY_PATH: "{nativeLibs}"
+
+update:
+  mirrorchyanRid: M9A
+
+app:
+  # 保持 com.aliothmoon.maafw.m9a 与已发布版本一致，覆盖安装可原地升级
+  id: m9a
+  label: M9A Pocket
+  icon: pi/icon.png

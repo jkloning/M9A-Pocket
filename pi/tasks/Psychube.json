@@ -1,0 +1,212 @@
+{
+    "task": [
+        {
+            "name": "每日心相（意志解析）",
+            "label": "$Task.Psychube",
+            "entry": "Psychube",
+            "option": [
+                "双重解析加成作战",
+                "吃糖"
+            ],
+            "group": [
+                "daily"
+            ]
+        }
+    ],
+    "option": {
+        "双重解析加成作战": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "PsychubeDouble": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ],
+            "description": "$Option.Psychube.DoubleAnalysisBattle.desc",
+            "label": "$Option.Psychube.DoubleAnalysisBattle"
+        },
+        "吃糖": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "option": [
+                        "糖果有效期",
+                        "自定义吃糖次数",
+                        "连续吃糖",
+                        "关闭吃糖提示"
+                    ]
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EatCandy": {
+                            "enabled": false
+                        },
+                        "EatMiniCandy": {
+                            "enabled": false
+                        },
+                        "EatCandyStart": {
+                            "enabled": false
+                        },
+                        "EatCandyPage": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.Psychube.ConsumeCandy.desc",
+            "label": "$Option.Psychube.ConsumeCandy"
+        },
+        "糖果有效期": {
+            "label": "$Option.Psychube.CandyExpiry",
+            "type": "select",
+            "cases": [
+                {
+                    "name": "24h",
+                    "description": "$Option.Psychube.CandyExpiry.24h.desc",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "valid_period": "24h"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "7d",
+                    "description": "$Option.Psychube.CandyExpiry.7d.desc",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "valid_period": "7d"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "14d",
+                    "description": "$Option.Psychube.CandyExpiry.14d.desc",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "valid_period": "14d"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "无限期",
+                    "label": "$Option.Psychube.CandyExpiry.Unlimited",
+                    "description": "$Option.Psychube.CandyExpiry.Unlimited.desc",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "valid_period": "infinite"
+                            }
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.Psychube.CandyExpiry.desc"
+        },
+        "自定义吃糖次数": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "max_hit": 114514
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "option": [
+                        "吃糖次数"
+                    ]
+                }
+            ],
+            "description": "$Option.Psychube.CustomCandyCount.desc",
+            "label": "$Option.Psychube.CustomCandyCount"
+        },
+        "吃糖次数": {
+            "type": "input",
+            "label": "$Option.Psychube.CandyCount",
+            "inputs": [
+                {
+                    "name": "吃糖次数",
+                    "label": "$Option.Psychube.CandyCount.Count",
+                    "pipeline_type": "int",
+                    "default": "114514",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "EatCandyStart": {
+                    "max_hit": "{吃糖次数}"
+                }
+            },
+            "description": "$Option.Psychube.CandyCount.desc"
+        },
+        "连续吃糖": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "fast": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "fast": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.Psychube.ContinuousCandy.desc",
+            "label": "$Option.Psychube.ContinuousCandy"
+        },
+        "关闭吃糖提示": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EatCandyCloseTip": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "EatCandyCloseTip": {
+                            "enabled": true
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.Psychube.DismissCandyPrompt.desc",
+            "label": "$Option.Psychube.DismissCandyPrompt"
+        }
+    }
+}

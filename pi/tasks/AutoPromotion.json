@@ -1,0 +1,1448 @@
+{
+    "task": [
+        {
+            "name": "活动推图",
+            "label": "$Task.AutoPromotion",
+            "entry": "AutoPromotion",
+            "option": [
+                "选择活动",
+                "推图模式",
+                "推图吃糖"
+            ],
+            "pipeline_override": {
+                "WaitReplay": {
+                    "recognition": {
+                        "param": {
+                            "roi": [
+                                1040,
+                                575,
+                                240,
+                                100
+                            ],
+                            "expected": [
+                                "复现",
+                                "开始行动"
+                            ]
+                        }
+                    }
+                }
+            },
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.AutoPromotion.desc"
+        }
+    ],
+    "option": {
+        "推图模式": {
+            "type": "select",
+            "default_case": "故事/主线",
+            "cases": [
+                {
+                    "name": "故事/主线",
+                    "label": "$Option.AutoPromotion.ClearMode.Story",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "探索模式",
+                    "label": "$Option.AutoPromotion.ClearMode.Exploration",
+                    "pipeline_override": {
+                        "AutoPromotion": {
+                            "next": [
+                                "AP_Navigate",
+                                "AP_EnsureExplore",
+                                "AP_AllPhasesDone"
+                            ]
+                        },
+                        "AP_NavArrived": {
+                            "next": [
+                                "AP_EnsureExplore"
+                            ]
+                        },
+                        "AP_AllDone": {
+                            "next": [
+                                "AP_AllPhasesDone"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.AutoPromotion.ClearMode.desc",
+            "label": "$Option.AutoPromotion.ClearMode"
+        },
+        "推图吃糖": {
+            "label": "$Option.AutoPromotion.ConsumeCandy",
+            "type": "switch",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "EatCandyStart": {
+                            "attach": {
+                                "valid_period": "infinite"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EatCandy": {
+                            "enabled": false
+                        },
+                        "EatMiniCandy": {
+                            "enabled": false
+                        },
+                        "EatCandyStart": {
+                            "enabled": false
+                        },
+                        "EatCandyPage": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.AutoPromotion.ConsumeCandy.desc"
+        },
+        "选择活动": {
+            "type": "select",
+            "default_case": "当前页面",
+            "cases": [
+                {
+                    "name": "当前页面",
+                    "label": "$Option.AutoPromotion.SelectEvent.CurrentPage",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "当期活动",
+                    "label": "$Option.AutoPromotion.SelectEvent.CurrentEvent",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "当期活动"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCurrentEntry": {
+                            "enabled": true
+                        },
+                        "AP_NavStoryEnter": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "雷米特杯失窃案",
+                    "label": "$Option.AutoPromotion.SelectEvent.RemitCup",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "雷米特杯失窃案"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "绿湖噩梦",
+                    "label": "$Option.AutoPromotion.SelectEvent.GreenLake",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "绿湖噩梦"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "行至摩卢旁卡",
+                    "label": "$Option.AutoPromotion.SelectEvent.MorPankh",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "行至摩卢旁卡"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "洞穴的囚徒",
+                    "label": "$Option.AutoPromotion.SelectEvent.CavePrisoner",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "洞穴的囚徒"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "复兴！乌卢鲁运动会",
+                    "label": "$Option.AutoPromotion.SelectEvent.Uluru",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "复兴！乌卢鲁运动会"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "朔日手记",
+                    "label": "$Option.AutoPromotion.SelectEvent.NewMoon",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "朔日手记"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "再见，来亚什基",
+                    "label": "$Option.AutoPromotion.SelectEvent.Liyashki",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "再见，来亚什基"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "孤独之歌",
+                    "label": "$Option.AutoPromotion.SelectEvent.SongOfSolitude",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "孤独之歌"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "7号往事",
+                    "label": "$Option.AutoPromotion.SelectEvent.NumberSeven",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "7号往事"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "忧郁的热带",
+                    "label": "$Option.AutoPromotion.SelectEvent.TristesTropiques",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "忧郁的热带"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "地球上最后的夜晚",
+                    "label": "$Option.AutoPromotion.SelectEvent.LastEvenings",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "地球上最后的夜晚"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "唐人街影话",
+                    "label": "$Option.AutoPromotion.SelectEvent.Chinatown",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "唐人街影话"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "疯癫与文明",
+                    "label": "$Option.AutoPromotion.SelectEvent.FolieEtDeraison",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "疯癫与文明"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "1987宇宙组曲",
+                    "label": "$Option.AutoPromotion.SelectEvent.CosmicOverture",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "1987宇宙组曲"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "复乐园",
+                    "label": "$Option.AutoPromotion.SelectEvent.ParadiseRegained",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "复乐园"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "今夜星光灿烂",
+                    "label": "$Option.AutoPromotion.SelectEvent.StarlightTonight",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "今夜星光灿烂"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "飞驰！明日之城",
+                    "label": "$Option.AutoPromotion.SelectEvent.CityOfTomorrow",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "飞驰！明日之城"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "圣火纪行：东区黎明",
+                    "label": "$Option.AutoPromotion.SelectEvent.SacredFlame",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "圣火纪行：东区黎明"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "行于漫漫长路上",
+                    "label": "$Option.AutoPromotion.SelectEvent.LongRoad",
+                    "pipeline_override": {
+                        "AP_Navigate": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "nav",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavCardClick": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "card",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavRewind": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "rewind",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavForward": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "swipe",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavNotFound": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "notfound",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        },
+                        "AP_NavPVTap": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "query": "pv",
+                                        "card_name": "行于漫漫长路上"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.AutoPromotion.SelectEvent.desc",
+            "label": "$Option.AutoPromotion.SelectEvent"
+        }
+    }
+}

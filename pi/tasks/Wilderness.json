@@ -1,0 +1,75 @@
+{
+    "task": [
+        {
+            "name": "收取荒原",
+            "label": "$Task.Wilderness",
+            "entry": "Wilderness",
+            "option": [
+                "好梦井",
+                "魔精收菜",
+                "交付订单"
+            ],
+            "group": [
+                "daily"
+            ]
+        }
+    ],
+    "option": {
+        "好梦井": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "WildernessGoodDreamWellTask": {
+                            "next": []
+                        }
+                    }
+                }
+            ],
+            "label": "$Option.Wilderness.Wellspring"
+        },
+        "魔精收菜": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "WildernessProductTask": {
+                            "next": []
+                        }
+                    }
+                }
+            ],
+            "description": "$Option.Wilderness.GatherEssence.desc",
+            "label": "$Option.Wilderness.GatherEssence"
+        },
+        "交付订单": {
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "WildernessTradeTask": {
+                            "next": []
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ],
+            "type": "switch",
+            "description": "$Option.Wilderness.DeliverOrders.desc",
+            "label": "$Option.Wilderness.DeliverOrders"
+        }
+    }
+}

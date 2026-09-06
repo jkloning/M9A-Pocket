@@ -1,0 +1,13 @@
+{
+    "task": [
+        {
+            "name": "完全归纳法",
+            "label": "$Task.CompleteInduction",
+            "entry": "CompleteInduction",
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.CompleteInduction.desc"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "task": [
+        {
+            "name": "匣中交流赛（拓片杂技赛）",
+            "label": "$Task.Colosseum",
+            "entry": "Colosseum",
+            "group": [
+                "standalone"
+            ],
+            "description": "$Task.Colosseum.desc"
+        }
+    ]
+}

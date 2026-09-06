@@ -1,0 +1,23 @@
+# 行尾统一：仓库内一律 LF，避免 Windows/CI 混签出造成 pi 资源哈希漂移
+* text=auto eol=lf
+
+# Windows 脚本保持 CRLF
+*.bat text eol=crlf
+
+# 二进制一律不做转换
+*.png binary
+*.ico binary
+*.webp binary
+*.jpg binary
+*.so binary
+*.onnx binary
+*.zip binary
+*.jar binary
+*.jks binary
+*.apk binary
+*.ttf binary
+*.mp3 binary
+*.mp4 binary
+# agent 运行时与模型（大文件，内容敏感）
+m9a-agent-dist/** binary
+pi/resource/base/model/** binary
