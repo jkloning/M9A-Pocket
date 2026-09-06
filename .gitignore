@@ -7,10 +7,10 @@ local.properties
 AGENTS.md
 /.vscode/
 
-# Generated files
-bin/
-gen/
-out/
+# Generated files（只限仓库根目录的生成产物；泛匹配会误伤 m9a-agent-dist 里的 bin/）
+/bin/
+/gen/
+/out/
 
 # Gradle files
 .gradle/
@@ -48,6 +48,8 @@ versioncode.txt
 # Python 缓存
 __pycache__/
 *.py[cod]
+# 例外说明：pi/agent/libs 的 *.pyd 是 Windows 专用扩展（安卓上不可加载，
+# combat.py 的 import 有 try/except 保护），被上面规则排除是刻意的
 
 # 发版产物
 /dist/
