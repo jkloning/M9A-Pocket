@@ -133,7 +133,9 @@ jobs:
           # git-cliff 用 GitHub API 解析 commit → @username（见 cliff.toml [remote.github]）
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git-cliff --current --strip header --github-repo jkloning/M9A-Pocket -o RELEASE_NOTES.md
+          # cliff 模板出错也不能挡住发版：失败时退化为纯 git log 列表
+          git-cliff --current --strip header --github-repo jkloning/M9A-Pocket -o RELEASE_NOTES.md \
+            || git log --pretty=format:"- %s" -20 > RELEASE_NOTES.md
           cat >> RELEASE_NOTES.md << 'EOF'
 
           ---
