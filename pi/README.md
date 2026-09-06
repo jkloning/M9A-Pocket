@@ -33,7 +33,7 @@ _重返未来：1999 · 安卓端 MaaFramework 助手_
 
 ## 任务列表
 
-任务与选项完整继承上游 M9A v4.7.1，本仓库不改动任务逻辑，仅做打包与安全加固（见[与上游的差异](#与上游的差异)）。
+任务与选项完整继承上游 M9A v4.8.0，本仓库不改动任务逻辑，仅做打包与安全加固（见[与上游的差异](#与上游的差异)）。
 
 | 任务 | 说明 |
 | --- | --- |
@@ -72,13 +72,13 @@ _重返未来：1999 · 安卓端 MaaFramework 助手_
 
 | 文档 | 说明 |
 | --- | --- |
-| [上游 M9A](https://github.com/MAA1999/M9A) | Windows / PC 端原项目，本仓库资源迁移自 v4.7.1 |
+| [上游 M9A](https://github.com/MAA1999/M9A) | Windows / PC 端原项目，本仓库资源迁移自 v4.8.0 |
 | [MaaFramework](https://github.com/MaaXYZ/MaaFramework) | 自动化框架（v5.12.3，PI V2 清单） |
 | [MaaFwApp](https://github.com/Aliothmoon/MaaFwApp) | 安卓打包宿主（AGPL-3.0） |
 
 ## 与上游的差异
 
-任务与识别逻辑与上游 v4.7.1 完全一致，差异仅有：
+任务与识别逻辑与上游 v4.8.0 完全一致，差异仅有：
 
 - `interface.json` 的 `github` 字段指向本仓库——应用内「检查更新」走 M9A-Pocket Releases（上游仓库无安卓包，指过去只会报"没有匹配的安装包"）
 - Agent 安全加固（打包时审查发现，均不改变功能）：

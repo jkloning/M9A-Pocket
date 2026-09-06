@@ -24,7 +24,7 @@ _重返未来：1999 · 安卓端 MaaFramework 助手_
 | 路径 | 内容 |
 | --- | --- |
 | `app/` `build-logic/` `semi-icons/` 等 | 宿主 App（MaaFwApp 内核 fork）：Compose 界面、Shizuku/Root 特权编排、虚拟屏后台运行、PI 加载与调度 |
-| `pi/` | M9A PI 资源：`interface.json` + `resource/` + `tasks/` + `data/` + `agent/`（自定义识别/动作），迁移自上游 M9A v4.7.1 |
+| `pi/` | M9A PI 资源：`interface.json` + `resource/` + `tasks/` + `data/` + `agent/`（自定义识别/动作），迁移自上游 M9A v4.8.0 |
 | `m9a-agent-dist/` | 内置 arm64 Python 运行时（CPython 3.13.15 + maafw 5.12.3 + numpy），`scripts/build_agent_bundle.py` 产出 |
 | `pi-profile-m9a.yaml` | 打包配方：PI 白名单、agent 启动参数、应用身份（包名 `com.aliothmoon.maafw.m9a`） |
 | `scripts/` | `setup_maa_framework.py`（拉取 MaaFramework .so）、`patch_kleidicv_sve.py`（模拟器兼容补丁）、`build_release_apks.py`（四变体一键构建） |
@@ -87,13 +87,13 @@ Debug 直接安装：`./gradlew installDebug`。
   framework attr（修复 clean 构建资源链接失败）
 - 兼容包：对 `libopencv_world4.so` 打 KleidiCV SVE2 分派补丁（锁 NEON），见
   [MAA-Meow issue #202](https://github.com/Aliothmoon/MAA-Meow/issues/202)
-- 资源：任务与识别逻辑继承上游 M9A v4.7.1（本仓库不改动任务逻辑，仅打包与安全加固）
+- 资源：任务与识别逻辑继承上游 M9A v4.8.0（本仓库不改动任务逻辑，仅打包与安全加固）
 
 ## 文档
 
 | 文档 | 说明 |
 | --- | --- |
-| [上游 M9A](https://github.com/MAA1999/M9A) | Windows / PC 端原项目，`pi/` 资源迁移自 v4.7.1 |
+| [上游 M9A](https://github.com/MAA1999/M9A) | Windows / PC 端原项目，`pi/` 资源迁移自 v4.8.0 |
 | [MaaFramework](https://github.com/MaaXYZ/MaaFramework) | 自动化框架（v5.12.3，PI V2 清单） |
 | [MaaFwApp](https://github.com/Aliothmoon/MaaFwApp) | 宿主内核上游（AGPL-3.0） |
 | [MAA-Meow](https://github.com/Aliothmoon/MAA-Meow) | 本仓库整体架构的参照项目 |
