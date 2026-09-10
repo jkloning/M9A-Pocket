@@ -7,7 +7,7 @@
   "license": "LICENSE",
   "name": "m9a",
   "label": "M9A",
-  "version": "v4.8.2",
+  "version": "v4.8.3",
   "icon": "logo.ico",
   "github": "https://github.com/jkloning/M9A-Pocket",
   "mirrorchyan_rid": "M9A",
@@ -162,7 +162,7 @@
       "child_exec": "python/python.exe",
       "child_args": [
         "-u",
-        "agent/bootstrap.py"
+        "agent/main.py"
       ]
     }
   ],
